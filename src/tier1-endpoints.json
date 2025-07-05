@@ -1,0 +1,2081 @@
+[
+  {
+    "path": "/beta/auth/premium",
+    "method": "GET",
+    "operationId": "beta_auth_premium_retrieve",
+    "description": "Premium Auth View",
+    "summary": "Premium Authentication",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PremiumAuthResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/bulk/congresstrading",
+    "method": "GET",
+    "operationId": "beta_bulk_congresstrading_retrieve",
+    "description": "Returns the full history of transactions by members of U.S. Congress.",
+    "summary": "Bulk Congress Trading",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "normalized",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Normalize representative/senator names"
+      },
+      {
+        "in": "query",
+        "name": "page",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Page number"
+      },
+      {
+        "in": "query",
+        "name": "page_size",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Items / page"
+      },
+      {
+        "in": "query",
+        "name": "representative",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Congressperson's name"
+      },
+      {
+        "in": "query",
+        "name": "bioguide_id",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Congressperson's BioGuide ID"
+      },
+      {
+        "in": "query",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock"
+      },
+      {
+        "in": "query",
+        "name": "version",
+        "schema": {
+          "type": "string",
+          "default": "V1"
+        },
+        "description": "API Version, one of V1 or V2"
+      },
+      {
+        "in": "query",
+        "name": "date",
+        "schema": {
+          "type": "string",
+          "format": "date"
+        },
+        "description": "Date the transaction was disclosed, formatted as YYYYMMDD"
+      },
+      {
+        "in": "query",
+        "name": "nonstock",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": "Include non-stock transactions"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AllCongressViewResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/bulk/wsbgreed",
+    "method": "GET",
+    "operationId": "beta_bulk_wsbgreed_retrieve",
+    "description": "Get WSB Greed data.",
+    "summary": "WSB Greed",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/WSBGreedResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/coins",
+    "method": "GET",
+    "operationId": "beta_coins_retrieve",
+    "description": "Get coins data from reddit.",
+    "summary": "Coins",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CoinsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/coins/",
+    "method": "GET",
+    "operationId": "beta_coins_retrieve_2",
+    "description": "Get coins data from reddit.",
+    "summary": "Coins",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CoinsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/companies",
+    "method": "GET",
+    "operationId": "beta_companies_retrieve",
+    "description": "Returns list of companies.",
+    "summary": "Companies",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CompaniesResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/companies/",
+    "method": "GET",
+    "operationId": "beta_companies_retrieve_2",
+    "description": "Returns list of companies.",
+    "summary": "Companies",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CompaniesResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/funds",
+    "method": "GET",
+    "operationId": "beta_funds_retrieve",
+    "description": "Return Fund information from SEC13F data.",
+    "summary": "Funds",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/FundsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/funds/",
+    "method": "GET",
+    "operationId": "beta_funds_retrieve_2",
+    "description": "Return Fund information from SEC13F data.",
+    "summary": "Funds",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/FundsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/historical/congresstrading/{ticker}",
+    "method": "GET",
+    "operationId": "beta_historical_congresstrading_retrieve",
+    "description": "Returns all the stock transactions by members of U.S. Congress involving the given ticker.",
+    "summary": "Historical Congress Trading",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "analyst",
+        "schema": {
+          "type": "string"
+        },
+        "description": "CNBC Analyst name contains"
+      },
+      {
+        "in": "path",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock",
+        "required": true
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoricalCongressViewResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/historical/govcontracts/{ticker}",
+    "method": "GET",
+    "operationId": "beta_historical_govcontracts_retrieve",
+    "description": "Returns historical quarterly government contracts amounts for the given ticker.",
+    "summary": "Historical Gov Contracts",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock",
+        "required": true
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoricalGovContractsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/historical/govcontractsall/{ticker}",
+    "method": "GET",
+    "operationId": "beta_historical_govcontractsall_retrieve",
+    "description": "Returns historical government contracts for the given ticker.",
+    "summary": "Historical Gov Contracts All",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock",
+        "required": true
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoricalGovContractsAllResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/historical/housetrading/{ticker}",
+    "method": "GET",
+    "operationId": "beta_historical_housetrading_retrieve",
+    "description": "Returns all the stock transactions by U.S. Representatives involving the given ticker.",
+    "summary": "Historical House Trading",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock",
+        "required": true
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoricalHouseViewResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/historical/lobbying/{ticker}",
+    "method": "GET",
+    "operationId": "beta_historical_lobbying_retrieve",
+    "description": "Returns all lobbying spending instances for the given ticker.",
+    "summary": "Historical Lobbying",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "page",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Page number"
+      },
+      {
+        "in": "query",
+        "name": "page_size",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Items / page"
+      },
+      {
+        "in": "query",
+        "name": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Query to match specific issue or summary"
+      },
+      {
+        "in": "query",
+        "name": "queryTicker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for searchall view"
+      },
+      {
+        "in": "path",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock",
+        "required": true
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoricalLobbyingResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/historical/offexchange/{ticker}",
+    "method": "GET",
+    "operationId": "beta_historical_offexchange_retrieve",
+    "description": "Returns daily historical off-exchange activity for the given ticker.",
+    "summary": "Historical Off-Exchange",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock",
+        "required": true
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoricalDPViewResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/historical/senatetrading/{ticker}",
+    "method": "GET",
+    "operationId": "beta_historical_senatetrading_retrieve",
+    "description": "Returns all the stock transactions by U.S. Senators involving the given ticker.",
+    "summary": "Historical Senate Trading",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock",
+        "required": true
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoricalSenateViewResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/ignoredtickers",
+    "method": "GET",
+    "operationId": "beta_ignoredtickers_retrieve",
+    "description": "Get ignored tickers",
+    "summary": "Ignored Tickers",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IgnoredTickersResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/bill_summaries",
+    "method": "GET",
+    "operationId": "beta_live_bill_summaries_retrieve",
+    "description": "Return recent bill summaries.",
+    "summary": "Recent Bill Summaries",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "page",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Page number"
+      },
+      {
+        "in": "query",
+        "name": "page_size",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Items / page"
+      },
+      {
+        "in": "query",
+        "name": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Query to match specific issue or summary"
+      },
+      {
+        "in": "query",
+        "name": "summary_limit",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Summary length limit for bill summaries"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/BillSummariesResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "enterprise"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/congressholdings",
+    "method": "GET",
+    "operationId": "beta_live_congressholdings_retrieve",
+    "description": "Returns live congress holdings data.",
+    "summary": "Live Congress Holdings",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CongressHoldingsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "enterprise"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/congresstrading",
+    "method": "GET",
+    "operationId": "beta_live_congresstrading_retrieve",
+    "description": "Returns the most recent transactions by members of U.S. Congress.",
+    "summary": "Live Congress Trading",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "normalized",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Normalize representative/senator names"
+      },
+      {
+        "in": "query",
+        "name": "representative",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Congressperson's name"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LiveCongressViewResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/flights",
+    "method": "GET",
+    "operationId": "beta_live_flights_retrieve",
+    "description": "Get live flight data",
+    "summary": "Live Flights",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LiveFlightsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/govcontracts",
+    "method": "GET",
+    "operationId": "beta_live_govcontracts_retrieve",
+    "description": "Returns last quarter's government contract amounts for all companies.",
+    "summary": "Recent Gov Contracts",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RecentGovContractsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/govcontractsall",
+    "method": "GET",
+    "operationId": "beta_live_govcontractsall_retrieve",
+    "description": "Returns recently announced contracts across all companies.",
+    "summary": "Recent Gov Contracts All",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "date",
+        "schema": {
+          "type": "string",
+          "format": "date"
+        },
+        "description": "Date, formatted as YYYYMMDD"
+      },
+      {
+        "in": "query",
+        "name": "page",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Page number"
+      },
+      {
+        "in": "query",
+        "name": "page_size",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Items / page"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RecentGovContractsAllResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/housetrading",
+    "method": "GET",
+    "operationId": "beta_live_housetrading_retrieve",
+    "description": "Returns the most recent transactions by U.S. Representatives.",
+    "summary": "Recent House Trading",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "name",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Congressperson's name"
+      },
+      {
+        "in": "query",
+        "name": "options",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Include options with trading data"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RecentHouseViewResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/legislation",
+    "method": "GET",
+    "operationId": "beta_live_legislation_retrieve",
+    "description": "Return recent legislation data.",
+    "summary": "Recent Legislation",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TodayLegislationResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "enterprise"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/lobbying",
+    "method": "GET",
+    "operationId": "beta_live_lobbying_retrieve",
+    "description": "Returns the most recent lobbying spending instances across all companies.",
+    "summary": "Live Lobbying",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "all",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Select all records"
+      },
+      {
+        "in": "query",
+        "name": "date_from",
+        "schema": {
+          "type": "string",
+          "format": "date"
+        },
+        "description": "Date to query from in YYYYMMDD format"
+      },
+      {
+        "in": "query",
+        "name": "date_to",
+        "schema": {
+          "type": "string",
+          "format": "date"
+        },
+        "description": "Date to query to in YYYYMMDD format"
+      },
+      {
+        "in": "query",
+        "name": "page",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Page number"
+      },
+      {
+        "in": "query",
+        "name": "page_size",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Items / page"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TodayLobbyingResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/offexchange",
+    "method": "GET",
+    "operationId": "beta_live_offexchange_retrieve",
+    "description": "Returns yesterday's off-exchange activity across all companies.",
+    "summary": "Live Off-Exchange",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "page",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Page number"
+      },
+      {
+        "in": "query",
+        "name": "page_size",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Items / page"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TodayDPViewResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/rss",
+    "method": "GET",
+    "operationId": "beta_live_rss_retrieve",
+    "description": "Get live RSS data",
+    "summary": "Live RSS",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LiveRSSResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "enterprise"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/senatetrading",
+    "method": "GET",
+    "operationId": "beta_live_senatetrading_retrieve",
+    "description": "Returns the most recent transactions by U.S. Senators.",
+    "summary": "Recent Senate Trading",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "name",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Congressperson's name"
+      },
+      {
+        "in": "query",
+        "name": "options",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Include options with trading data"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RecentSenateViewResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "public"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/live/wsbcommentsfull",
+    "method": "GET",
+    "operationId": "beta_live_wsbcommentsfull_retrieve",
+    "description": "Get full Live WSB Comments",
+    "summary": "Live WSB Comments Full",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "date_from",
+        "schema": {
+          "type": "string",
+          "format": "date"
+        },
+        "description": "Date to query from in YYYYMMDD format"
+      },
+      {
+        "in": "query",
+        "name": "date_to",
+        "schema": {
+          "type": "string",
+          "format": "date"
+        },
+        "description": "Date to query to in YYYYMMDD format"
+      },
+      {
+        "in": "query",
+        "name": "freq",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Frequency used for aggregation"
+      },
+      {
+        "in": "query",
+        "name": "ignore_common",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Ignore common words for wsb search"
+      },
+      {
+        "in": "query",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LiveWSBCommentsFullResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "enterprise"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/13frecentfilings",
+    "method": "GET",
+    "operationId": "beta_mobile_13frecentfilings_retrieve",
+    "description": "Get recent 13F filings.",
+    "summary": "13F Recent Filings",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MobileSEC13FFilingEntry"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/24hcryptocounts",
+    "method": "GET",
+    "operationId": "beta_mobile_24hcryptocounts_retrieve",
+    "description": "Get crypto count data from reddit.",
+    "summary": "Crypto Comment Counts (24h)",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CryptoCounts24hResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/24hcryptohottest",
+    "method": "GET",
+    "operationId": "beta_mobile_24hcryptohottest_retrieve",
+    "description": "Get 24h hottest crypto comments from reddit.",
+    "summary": "Crypto Hottest Comments (24h)",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CryptoHottest24hResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/24hwsbcounts",
+    "method": "GET",
+    "operationId": "beta_mobile_24hwsbcounts_retrieve",
+    "description": "Get mobile data for 24h WSB counts",
+    "summary": "Mobile 24h WSB Counts",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Mobile24hWSBCountsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/24hwsbhottest",
+    "method": "GET",
+    "operationId": "beta_mobile_24hwsbhottest_retrieve",
+    "description": "Get mobile data for 24h WSB hottest",
+    "summary": "Mobile 24h Hottest",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Mobile24hWSBHottestResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/cnbcbyperson",
+    "method": "GET",
+    "operationId": "beta_mobile_cnbcbyperson_retrieve",
+    "description": "Get CNBC trader information by analyst.",
+    "summary": "CNBC Trader Information",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "analyst",
+        "schema": {
+          "type": "string"
+        },
+        "description": "CNBC Analyst name contains"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CNBCByPersonResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "internal",
+      "mobile"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/cnbcgraphs",
+    "method": "GET",
+    "operationId": "beta_mobile_cnbcgraphs_retrieve",
+    "description": "Returns list of CNBC graphs.",
+    "summary": "Mobile CNBC Graphs",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CNBCGraphsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "internal",
+      "mobile"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/govcontracts",
+    "method": "GET",
+    "operationId": "beta_mobile_govcontracts_retrieve",
+    "description": "Returns government contract information for the mobile endpoint.",
+    "summary": "Mobile Gov Contracts",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock"
+      },
+      {
+        "in": "query",
+        "name": "type",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Can either be recent or total_1y"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MobileGovContractsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/insidertrading/{type}",
+    "method": "GET",
+    "operationId": "beta_mobile_insidertrading_retrieve",
+    "description": "Return insider trading information.",
+    "summary": "Insider Trading",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock"
+      },
+      {
+        "in": "path",
+        "name": "type",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Type for the search",
+        "required": true
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/InsiderTradingResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "internal",
+      "mobile"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/notifications",
+    "method": "GET",
+    "operationId": "beta_mobile_notifications_retrieve",
+    "description": "Get / Post Mobile Notifications",
+    "summary": "Mobile Notifications",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "date_from",
+        "schema": {
+          "type": "string",
+          "format": "date"
+        },
+        "description": "Date to query from in YYYYMMDD format"
+      },
+      {
+        "in": "query",
+        "name": "date_to",
+        "schema": {
+          "type": "string",
+          "format": "date"
+        },
+        "description": "Date to query to in YYYYMMDD format"
+      },
+      {
+        "in": "query",
+        "name": "category",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Category of the notification"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MobileNotificationResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/repreturns",
+    "method": "GET",
+    "operationId": "beta_mobile_repreturns_retrieve",
+    "description": "Returns live congress holdings data.",
+    "summary": "Representative Returns",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RepReturnsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/repsentiment",
+    "method": "GET",
+    "operationId": "beta_mobile_repsentiment_retrieve",
+    "description": "Representative sentiment data for the mobile app.",
+    "summary": "Representative Sentiment",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RepSentimentResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/senatereturns",
+    "method": "GET",
+    "operationId": "beta_mobile_senatereturns_retrieve",
+    "description": "Senate returns data for the mobile app.",
+    "summary": "Senate returns",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SenateReturnsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/senatesentiment",
+    "method": "GET",
+    "operationId": "beta_mobile_senatesentiment_retrieve",
+    "description": "Senate sentiment data for the mobile app.",
+    "summary": "Senate Sentiment",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SenateSentimentResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/ticker/{ticker}",
+    "method": "GET",
+    "operationId": "beta_mobile_ticker_retrieve",
+    "description": "Returns abundance of ticker data for mobile application.",
+    "summary": "Mobile Ticker Data",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "ticker",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Ticker for any given stock",
+        "required": true
+      },
+      {
+        "in": "query",
+        "name": "version",
+        "schema": {
+          "type": "string",
+          "default": "V1"
+        },
+        "description": "API Version, one of V1 or V2"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MobileTickerResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "internal",
+      "mobile"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/mobile/toplobbying",
+    "method": "GET",
+    "operationId": "beta_mobile_toplobbying_retrieve",
+    "description": "Return lobbying data for mobile app.",
+    "summary": "Mobile Top Lobbying",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TopLobbyingResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "mobile",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/personalities",
+    "method": "GET",
+    "operationId": "beta_personalities_retrieve",
+    "description": "Returns list of CNBC personalities.",
+    "summary": "CNBC Personalities",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PersonalitiesResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/personalities/",
+    "method": "GET",
+    "operationId": "beta_personalities_retrieve_2",
+    "description": "Returns list of CNBC personalities.",
+    "summary": "CNBC Personalities",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PersonalitiesResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/strategies/holdings",
+    "method": "GET",
+    "operationId": "beta_strategies_holdings_retrieve",
+    "description": "Get strategies holdings data",
+    "summary": "Strategies Holdings",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "strategy",
+        "schema": {
+          "type": "string",
+          "default": "all"
+        },
+        "description": "Strategy type"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/StrategyHoldingsResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "enterprise"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/strategies/holdingsinfrequent",
+    "method": "GET",
+    "operationId": "beta_strategies_holdings_infrequent_retrieve",
+    "description": "Get strategies holdings data",
+    "summary": "Strategies Holdings",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "strategy",
+        "schema": {
+          "type": "string",
+          "default": "all"
+        },
+        "description": "Strategy type"
+      }
+    ],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/StrategyHoldingsInfrequentResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "enterprise"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/ticker_data",
+    "method": "GET",
+    "operationId": "beta_ticker_data_retrieve",
+    "description": "Get ticker data",
+    "summary": "Ticker Data",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TickerDataResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  },
+  {
+    "path": "/beta/tickerdata/",
+    "method": "GET",
+    "operationId": "beta_tickerdata_retrieve",
+    "description": "Get ticker data",
+    "summary": "Ticker Data",
+    "parameters": [],
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TickerDataResponse"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "tags": [
+      "Tier 1",
+      "Tier 1",
+      "internal"
+    ],
+    "security": [
+      {
+        "WebPlatformTokenAuth": []
+      }
+    ]
+  }
+]

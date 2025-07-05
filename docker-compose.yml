@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  quiver-mcp-server:
+    # Use pre-built image from GitHub Container Registry
+    image: ghcr.io/YOUR_USERNAME/quivermcp:latest
+    # Alternative: build locally
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    container_name: quiver-mcp-server
+    ports:
+      - "3000:3000"
+    environment:
+      - QUIVER_API_TOKEN=${QUIVER_API_TOKEN}
+      - QUIVER_BASE_URL=${QUIVER_BASE_URL:-https://api.quiverquant.com}
+      - NODE_ENV=production
+      - PORT=3000
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - quiver-network
+
+networks:
+  quiver-network:
+    driver: bridge
