@@ -2,10 +2,13 @@
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { CallToolRequestSchema, ListToolsRequestSchema, ListPromptsRequestSchema, GetPromptRequestSchema, ListResourcesRequestSchema, ReadResourceRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { QuiverClient } from './quiver-client.js';
 import { QuiverConfig } from './types.js';
 import { quiverTools } from './tools.js';
+import { quiverPrompts, getPrompt } from './prompts.js';
+import { quiverResources, getResource } from './resources.js';
+import { SERVER_INSTRUCTIONS } from './server-instructions.js';
 import { z } from 'zod';
 
 // Configuration schema
@@ -37,6 +40,13 @@ const server = new Server(
   {
     capabilities: {
       tools: {},
+      prompts: {
+        listChanged: true
+      },
+      resources: {
+        subscribe: true,
+        listChanged: true
+      }
     },
   }
 );
@@ -54,6 +64,59 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     tools: tools
   };
 });
+
+// List prompts handler
+server.setRequestHandler(ListPromptsRequestSchema, async () => {
+  return {
+    prompts: quiverPrompts.map(prompt => ({
+      name: prompt.name,
+      description: prompt.description,
+      arguments: prompt.arguments
+    }))
+  };
+});
+
+// Get prompt handler
+server.setRequestHandler(GetPromptRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+  
+  try {
+    const messages = getPrompt(name, args || {});
+    return {
+      messages
+    };
+  } catch (error) {
+    throw new Error(`Unknown prompt: ${name}`);
+  }
+});
+
+// List resources handler
+server.setRequestHandler(ListResourcesRequestSchema, async () => {
+  return {
+    resources: quiverResources
+  };
+});
+
+// Read resource handler
+server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+  const { uri } = request.params;
+  
+  try {
+    const resource = getResource(uri);
+    return {
+      contents: [
+        {
+          uri,
+          mimeType: resource.mimeType,
+          text: resource.contents
+        }
+      ]
+    };
+  } catch (error) {
+    throw new Error(`Unknown resource: ${uri}`);
+  }
+});
+
 
 // Call tool handler
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
@@ -81,11 +144,26 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       };
     }
 
+    // Check if result is already formatted by response utils
+    const isFormattedResponse = result && typeof result === 'object' && 
+      ('data' in result || 'summary' in result || 'pagination' in result);
+    
+    if (isFormattedResponse) {
+      return {
+        content: [
+          {
+            type: 'text',
+            text: typeof result.data === 'string' ? result.data : JSON.stringify(result.data)
+          }
+        ]
+      };
+    }
+    
     return {
       content: [
         {
           type: 'text',
-          text: JSON.stringify(result.data, null, 2)
+          text: JSON.stringify(result.data)
         }
       ]
     };

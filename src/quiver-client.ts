@@ -67,12 +67,14 @@ export class QuiverClient {
   }
 
   // Specific methods for common endpoints
-  async getCompanies(): Promise<QuiverAPIResponse> {
-    return this.makeRequest('/beta/companies');
+  async getCompanies(search?: string): Promise<QuiverAPIResponse> {
+    const params = search ? { search } : {};
+    return this.makeRequest('/beta/companies', 'GET', params);
   }
 
-  async getFunds(): Promise<QuiverAPIResponse> {
-    return this.makeRequest('/beta/funds');
+  async getFunds(search?: string): Promise<QuiverAPIResponse> {
+    const params = search ? { search } : {};
+    return this.makeRequest('/beta/funds', 'GET', params);
   }
 
   async getRecentCongressTrading(normalized?: boolean, limit?: number): Promise<QuiverAPIResponse> {

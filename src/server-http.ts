@@ -5,6 +5,8 @@ import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprot
 import { QuiverClient } from './quiver-client.js';
 import { QuiverConfig } from './types.js';
 import { quiverTools } from './tools.js';
+import { quiverPrompts, getPrompt } from './prompts.js';
+import { quiverResources, getResource } from './resources.js';
 import express from 'express';
 import cors from 'cors';
 import { z } from 'zod';
@@ -38,6 +40,13 @@ const server = new Server(
   {
     capabilities: {
       tools: {},
+      prompts: {
+        listChanged: true
+      },
+      resources: {
+        subscribe: true,
+        listChanged: true
+      },
     },
   }
 );
@@ -225,18 +234,37 @@ app.post('/message', async (req, res) => {
               }
             };
           } else {
-            response = {
-              jsonrpc: '2.0',
-              id: req.body.id,
-              result: {
-                content: [
-                  {
-                    type: 'text',
-                    text: JSON.stringify(result.data, null, 2)
-                  }
-                ]
-              }
-            };
+            // Check if result is already formatted by response utils
+            const isFormattedResponse = result && typeof result === 'object' && 
+              ('data' in result || 'summary' in result || 'pagination' in result);
+            
+            if (isFormattedResponse) {
+              response = {
+                jsonrpc: '2.0',
+                id: req.body.id,
+                result: {
+                  content: [
+                    {
+                      type: 'text',
+                      text: typeof result.data === 'string' ? result.data : JSON.stringify(result.data)
+                    }
+                  ]
+                }
+              };
+            } else {
+              response = {
+                jsonrpc: '2.0',
+                id: req.body.id,
+                result: {
+                  content: [
+                    {
+                      type: 'text',
+                      text: JSON.stringify(result.data)
+                    }
+                  ]
+                }
+              };
+            }
           }
         } catch (error) {
           response = {
@@ -254,35 +282,69 @@ app.post('/message', async (req, res) => {
         jsonrpc: '2.0',
         id: req.body.id,
         result: {
-          resources: []
+          resources: quiverResources
         }
       };
     } else if (method === 'resources/read') {
-      response = {
-        jsonrpc: '2.0',
-        id: req.body.id,
-        error: {
-          code: -32601,
-          message: 'No resources available'
-        }
-      };
+      const { uri } = params;
+      try {
+        const resource = getResource(uri);
+        response = {
+          jsonrpc: '2.0',
+          id: req.body.id,
+          result: {
+            contents: [
+              {
+                uri,
+                mimeType: resource.mimeType,
+                text: resource.contents
+              }
+            ]
+          }
+        };
+      } catch (error) {
+        response = {
+          jsonrpc: '2.0',
+          id: req.body.id,
+          error: {
+            code: -32601,
+            message: `Unknown resource: ${uri}`
+          }
+        };
+      }
     } else if (method === 'prompts/list') {
       response = {
         jsonrpc: '2.0',
         id: req.body.id,
         result: {
-          prompts: []
+          prompts: quiverPrompts.map(prompt => ({
+            name: prompt.name,
+            description: prompt.description,
+            arguments: prompt.arguments
+          }))
         }
       };
     } else if (method === 'prompts/get') {
-      response = {
-        jsonrpc: '2.0',
-        id: req.body.id,
-        error: {
-          code: -32601,
-          message: 'No prompts available'
-        }
-      };
+      const { name, arguments: args } = params;
+      try {
+        const messages = getPrompt(name, args || {});
+        response = {
+          jsonrpc: '2.0',
+          id: req.body.id,
+          result: {
+            messages
+          }
+        };
+      } catch (error) {
+        response = {
+          jsonrpc: '2.0',
+          id: req.body.id,
+          error: {
+            code: -32601,
+            message: `Unknown prompt: ${name}`
+          }
+        };
+      }
     } else if (method === '$/cancelRequest') {
       response = {
         jsonrpc: '2.0',
