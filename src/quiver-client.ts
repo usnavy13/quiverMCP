@@ -75,8 +75,26 @@ export class QuiverClient {
     return this.makeRequest('/beta/funds');
   }
 
-  async getRecentCongressTrading(normalized?: boolean): Promise<QuiverAPIResponse> {
-    return this.makeRequest('/beta/live/congresstrading', 'GET', { normalized });
+  async getRecentCongressTrading(normalized?: boolean, limit?: number): Promise<QuiverAPIResponse> {
+    const response = await this.makeRequest('/beta/live/congresstrading', 'GET', { normalized });
+    
+    // Apply client-side limiting if limit is specified and response has data
+    if (limit && response.data && Array.isArray(response.data)) {
+      return {
+        ...response,
+        data: response.data.slice(0, limit)
+      };
+    }
+    
+    // If no limit specified, apply default limit of 200 (1/5th of typical ~1000 records)
+    if (!limit && response.data && Array.isArray(response.data)) {
+      return {
+        ...response,
+        data: response.data.slice(0, 200)
+      };
+    }
+    
+    return response;
   }
 
   async getCongressHoldings(): Promise<QuiverAPIResponse> {

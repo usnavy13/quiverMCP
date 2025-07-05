@@ -37,11 +37,15 @@ export const quiverTools: MCPTool[] = [
         normalized: {
           type: 'boolean',
           description: 'Whether to normalize the data'
+        },
+        limit: {
+          type: 'number',
+          description: 'Maximum number of transactions to return (default: 200, which is 1/5th of typical response)'
         }
       },
       required: []
     },
-    handler: async (client, args) => client.getRecentCongressTrading(args?.normalized)
+    handler: async (client, args) => client.getRecentCongressTrading(args?.normalized, args?.limit)
   },
   {
     name: 'get_congress_holdings',
