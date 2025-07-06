@@ -7,15 +7,10 @@ import { QuiverConfig } from './types.js';
 import { quiverTools } from './tools.js';
 import { quiverPrompts, getPrompt } from './prompts.js';
 import { quiverResources, getResource } from './resources.js';
+import { SERVER_INSTRUCTIONS } from './server-instructions.js';
 import express from 'express';
 import cors from 'cors';
-import { z } from 'zod';
 
-// Configuration schema
-const ConfigSchema = z.object({
-  baseUrl: z.string().default('https://api.quiverquant.com'),
-  apiToken: z.string()
-});
 
 // Get configuration from environment
 const config: QuiverConfig = {
@@ -35,7 +30,7 @@ const quiverClient = new QuiverClient(config);
 const server = new Server(
   {
     name: 'quiver-mcp-server',
-    version: '1.0.0',
+    version: '1.0.0'
   },
   {
     capabilities: {
@@ -48,6 +43,7 @@ const server = new Server(
         listChanged: true
       },
     },
+    instructions: SERVER_INSTRUCTIONS
   }
 );
 
@@ -126,7 +122,7 @@ app.use(cors({
 app.use(express.json());
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ 
     status: 'ok', 
     timestamp: new Date().toISOString(),
@@ -136,7 +132,7 @@ app.get('/health', (req, res) => {
 });
 
 // MCP endpoint info
-app.get('/mcp', (req, res) => {
+app.get('/mcp', (_req, res) => {
   res.json({
     name: 'quiver-mcp-server',
     version: '1.0.0',
@@ -161,7 +157,7 @@ app.post('/message', async (req, res) => {
         jsonrpc: '2.0',
         id: req.body.id,
         result: {
-          protocolVersion: '2024-11-05',
+          protocolVersion: '2025-03-26',
           capabilities: {
             tools: {
               listChanged: true
@@ -176,8 +172,10 @@ app.post('/message', async (req, res) => {
           },
           serverInfo: {
             name: 'quiver-mcp-server',
-            version: '1.0.0'
-          }
+            version: '1.0.0',
+            instructions: SERVER_INSTRUCTIONS
+          },
+          instructions: SERVER_INSTRUCTIONS
         }
       };
     } else if (method === 'initialized') {

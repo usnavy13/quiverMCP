@@ -9,13 +9,7 @@ import { quiverTools } from './tools.js';
 import { quiverPrompts, getPrompt } from './prompts.js';
 import { quiverResources, getResource } from './resources.js';
 import { SERVER_INSTRUCTIONS } from './server-instructions.js';
-import { z } from 'zod';
 
-// Configuration schema
-const ConfigSchema = z.object({
-  baseUrl: z.string().default('https://api.quiverquant.com'),
-  apiToken: z.string()
-});
 
 // Get configuration from environment
 const config: QuiverConfig = {
@@ -35,7 +29,7 @@ const quiverClient = new QuiverClient(config);
 const server = new Server(
   {
     name: 'quiver-mcp-server',
-    version: '1.0.0',
+    version: '1.0.0'
   },
   {
     capabilities: {
@@ -48,6 +42,7 @@ const server = new Server(
         listChanged: true
       }
     },
+    instructions: SERVER_INSTRUCTIONS
   }
 );
 

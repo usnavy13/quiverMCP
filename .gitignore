@@ -117,3 +117,8 @@ local_server.log
 # Docker
 .dockerignore
 docker-compose.override.yml
+
+# Test outputs
+test-results/
+config-test-results/
+endpoint-outputs/

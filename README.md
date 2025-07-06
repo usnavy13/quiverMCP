@@ -2,8 +2,8 @@
 
 A Model Context Protocol (MCP) server that provides access to QuiverAPI's Tier 1 endpoints for financial and political data. Designed for integration with LibreChat and other MCP clients.
 
-[![Docker Build](https://github.com/YOUR_USERNAME/quiverMCP/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/YOUR_USERNAME/quiverMCP/actions/workflows/docker-publish.yml)
-[![Docker Pulls](https://img.shields.io/docker/pulls/ghcr.io/YOUR_USERNAME/quivermcp)](https://github.com/YOUR_USERNAME/quiverMCP/pkgs/container/quivermcp)
+[![Docker Build](https://github.com/usnavy13/quiverMCP/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/usnavy13/quiverMCP/actions/workflows/docker-publish.yml)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ghcr.io/usnavy13/quivermcp)](https://github.com/usnavy13/quiverMCP/pkgs/container/quivermcp)
 
 ## 🌟 Full MCP Protocol Support
 
@@ -44,14 +44,14 @@ docker run -d \
   --name quiver-mcp-server \
   -p 3000:3000 \
   -e QUIVER_API_TOKEN=your_token_here \
-  ghcr.io/YOUR_USERNAME/quivermcp:latest
+  ghcr.io/usnavy13/quivermcp:latest
 ```
 
 ### Quick Start with Docker Compose
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/quiverMCP.git
+   git clone https://github.com/usnavy13/quiverMCP.git
    cd quiverMCP
    ```
 
@@ -401,9 +401,9 @@ curl -X POST http://localhost:3000/message \
 
 Pre-built Docker images are automatically published to GitHub Container Registry on every release:
 
-- **Latest stable**: `ghcr.io/YOUR_USERNAME/quivermcp:latest`
-- **Specific version**: `ghcr.io/YOUR_USERNAME/quivermcp:v1.0.0`
-- **Branch builds**: `ghcr.io/YOUR_USERNAME/quivermcp:main`
+- **Latest stable**: `ghcr.io/usnavy13/quivermcp:latest`
+- **Specific version**: `ghcr.io/usnavy13/quivermcp:v1.0.0`
+- **Branch builds**: `ghcr.io/usnavy13/quivermcp:main`
 
 ### Available Tags
 
