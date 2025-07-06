@@ -48,7 +48,7 @@ export const quiverTools: MCPTool[] = [
       properties: {
         search: {
           type: 'string',
-          description: 'Search companies by name, ticker, or other attributes'
+          description: 'Partial text search - use company name keywords or ticker symbols (e.g., "Apple" or "AAPL", not "Apple Inc. (NASDAQ:AAPL)")'
         },
         ...responseOptionsSchema
       },
@@ -76,7 +76,7 @@ export const quiverTools: MCPTool[] = [
       properties: {
         search: {
           type: 'string',
-          description: 'Search funds by name, CIK, or other attributes'
+          description: 'Partial text search - use fund name keywords or manager names (e.g., "Berkshire" not "Berkshire Hathaway Inc.")'
         },
         ...responseOptionsSchema
       },
@@ -150,13 +150,13 @@ export const quiverTools: MCPTool[] = [
   },
   {
     name: 'get_recent_bill_summaries',
-    description: 'Get recent bill summaries. Supports pagination and summary length limits.',
+    description: 'Get recent bill summaries. Use partial, distinctive keywords for best results (e.g., "Infrastructure" not "H.R.123"). Avoid exact titles or bill numbers.',
     inputSchema: {
       type: 'object',
       properties: {
         query: {
           type: 'string',
-          description: 'Query to match specific issue or summary'
+          description: 'Partial text search - use distinctive keywords from bill titles, NOT bill numbers or exact full titles'
         },
         summary_limit: {
           type: 'number',
@@ -373,13 +373,13 @@ export const quiverTools: MCPTool[] = [
   },
   {
     name: 'get_recent_lobbying',
-    description: 'Get the most recent lobbying spending instances across all companies. Returns client_name, registrant_name, amount, date by default.',
+    description: 'Get the most recent lobbying spending instances. Use partial keywords for best results (e.g., "healthcare" not full organization names). Returns client_name, registrant_name, amount, date by default.',
     inputSchema: {
       type: 'object',
       properties: {
         query: {
           type: 'string',
-          description: 'Query to filter lobbying data'
+          description: 'Partial text search - use keywords from issues, client names, or topics. Avoid overly specific or formal names'
         },
         client_name: {
           type: 'string',

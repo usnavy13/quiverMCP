@@ -8,6 +8,46 @@ export const SERVER_INSTRUCTIONS = `# Quiver Financial Data Server - Usage Guide
 ## Overview
 This MCP server provides access to comprehensive financial data including congressional trading, government contracts, lobbying activities, and real-time market data from QuiverQuant. The server includes advanced token optimization features to help manage response sizes effectively.
 
+## Search Strategy Guide (CRITICAL)
+
+### Query Parameter Best Practices
+The \`query\` parameter is available in many endpoints and uses partial text matching. Follow these strategies for optimal results:
+
+#### Effective Search Strategies
+1. **Use Distinctive Keywords**: Search for unique parts of names or titles
+   - ✅ GOOD: "One Big Beautiful Bill" (finds "H.R.1 One Big Beautiful Bill Act")
+   - ❌ BAD: "H.R.1 One Big Beautiful Bill Act" (too specific, exact match may fail)
+   - ❌ BAD: "H.R.1" (too generic, may not match or return too many results)
+
+2. **Partial Matches Work Best**: The search engine favors partial string matching
+   - ✅ GOOD: "Infrastructure" (finds bills containing this keyword)
+   - ✅ GOOD: "Defense Authorization" (finds NDAA bills)
+   - ❌ BAD: "S.1234 - Infrastructure Investment and Jobs Act of 2023" (too exact)
+
+3. **Company/Fund Searches**: Use partial company names or tickers
+   - ✅ GOOD: "Apple" or "AAPL" (finds Apple Inc.)
+   - ✅ GOOD: "Berkshire" (finds Berkshire Hathaway)
+   - ❌ BAD: "Apple Inc. (NASDAQ:AAPL)" (unnecessary specificity)
+
+4. **Representative Names**: Use last names or distinctive parts
+   - ✅ GOOD: "Pelosi" (finds Nancy Pelosi)
+   - ✅ GOOD: "Alexandria" (finds Alexandria Ocasio-Cortez)
+   - ❌ BAD: "Rep. Nancy Patricia Pelosi (D-CA-11)" (too formal)
+
+#### Search Examples by Endpoint
+- **Bill Summaries**: Use memorable parts of bill titles, not bill numbers
+- **Companies**: Use common names or stock tickers
+- **Funds**: Use fund manager names or partial fund names
+- **Lobbying**: Use issue keywords or client names
+- **Contracts**: Use agency names or contract descriptions
+
+#### Fallback Strategy
+If your first search returns no results:
+1. Try a shorter, more distinctive part of the search term
+2. Remove formal prefixes (Rep., Sen., H.R., S.)
+3. Use the most unique word in the title/name
+4. Consider alternative spellings or common abbreviations
+
 ## Core Workflow Patterns
 
 ### 1. Congressional Trading Analysis
