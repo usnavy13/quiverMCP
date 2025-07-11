@@ -1,6 +1,6 @@
 # QuiverAPI MCP Server
 
-A Model Context Protocol (MCP) server that provides access to QuiverAPI's Tier 1 endpoints for financial and political data. Designed for integration with LibreChat and other MCP clients.
+A Model Context Protocol (MCP) server that provides access to QuiverAPI's Tier 1 endpoints for financial and political data. Works seamlessly with Claude Desktop, LibreChat, and other MCP clients.
 
 [![Docker Build](https://github.com/usnavy13/quiverMCP/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/usnavy13/quiverMCP/actions/workflows/docker-publish.yml)
 [![Docker Pulls](https://img.shields.io/docker/pulls/ghcr.io/usnavy13/quivermcp)](https://github.com/usnavy13/quiverMCP/pkgs/container/quivermcp)
@@ -15,7 +15,8 @@ This server implements the complete Model Context Protocol specification, includ
 - ✅ **Prompts**: `prompts/list`, `prompts/get` (extensible)
 - ✅ **Utilities**: `$/cancelRequest`, health checks
 - ✅ **Capability Negotiation**: Full feature discovery
-- ✅ **LibreChat Compatible**: Streamable HTTP transport
+- ✅ **Claude Desktop Ready**: Native STDIO transport
+- ✅ **LibreChat Compatible**: HTTP transport available
 
 ## 🚀 Features
 
@@ -30,9 +31,10 @@ This MCP server provides access to 21 Tier 1 endpoints from QuiverAPI, including
 
 ## 📋 Prerequisites
 
-- Docker and Docker Compose (recommended)
-- OR Node.js 18+ (for manual installation)
-- A valid QuiverAPI token ([Get one here](https://www.quiverquant.com/))
+- **For Claude Desktop**: Just a QuiverAPI token! (npx handles the rest)
+- **For manual setup**: Node.js 18+ 
+- **For Docker**: Docker and Docker Compose
+- **QuiverAPI token**: [Get one here](https://www.quiverquant.com/) (required for all modes)
 
 ## 🐳 Docker Installation (Recommended)
 
@@ -119,6 +121,51 @@ QUIVER_API_TOKEN=your_quiver_api_token_here
 QUIVER_BASE_URL=https://api.quiverquant.com
 PORT=3000
 LIBRECHAT_ORIGIN=http://localhost:3080
+```
+
+## 🤖 Claude Desktop Integration (Recommended)
+
+### Quick Setup for Claude Desktop
+
+The easiest way to use QuiverAPI with Claude Desktop:
+
+1. **Get your API token** from [QuiverQuant.com](https://www.quiverquant.com/)
+
+2. **Add to your Claude Desktop config file**:
+   
+   **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`  
+   **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+   ```json
+   {
+     "mcpServers": {
+       "quiver": {
+         "command": "npx",
+         "args": ["-y", "github:usnavy13/quiverMCP"],
+         "env": {
+           "QUIVER_API_TOKEN": "your_token_here"
+         }
+       }
+     }
+   }
+   ```
+
+3. **Restart Claude Desktop** and start using QuiverAPI tools in your conversations!
+
+### Example Usage in Claude
+
+Once configured, you can ask Claude things like:
+
+```
+Show me recent Congress trading activity for AAPL
+```
+
+```
+What are the latest government contracts awarded to Microsoft?
+```
+
+```
+Get lobbying data for Tesla over the past year
 ```
 
 ## 🤖 LibreChat Integration
@@ -325,13 +372,69 @@ npm run watch
 
 This server supports two transport modes:
 
-1. **HTTP Mode** (default): For LibreChat and web-based MCP clients
-   - Endpoint: `http://localhost:3000/message`
-   - Start with: `npm start`
+### 1. **STDIO Mode**: For Claude Desktop and MCP Clients
 
-2. **Stdio Mode**: For Claude Desktop and CLI-based MCP clients
-   - Uses stdin/stdout communication
-   - Start with: `npm run start:stdio`
+**Recommended for most users** - Direct MCP protocol communication via stdin/stdout.
+
+#### Quick Start with Claude Desktop
+
+1. **Get your QuiverAPI token** from [QuiverQuant.com](https://www.quiverquant.com/)
+
+2. **Add to Claude Desktop configuration**:
+   
+   **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+   ```json
+   {
+     "mcpServers": {
+       "quiver": {
+         "command": "npx",
+         "args": ["-y", "github:usnavy13/quiverMCP"],
+         "env": {
+           "QUIVER_API_TOKEN": "your_token_here"
+         }
+       }
+     }
+   }
+   ```
+
+3. **Restart Claude Desktop** - The QuiverAPI tools will be available in your conversations!
+
+#### Manual STDIO Usage
+
+```bash
+# Install dependencies
+npm install
+
+# Set your API token
+export QUIVER_API_TOKEN=your_token_here
+
+# Run in development mode
+npm run dev:stdio
+
+# Or build and run in production
+npm run build
+npm run start:stdio
+```
+
+#### Testing STDIO Mode
+
+```bash
+# Run the built-in STDIO test suite
+npm run test:stdio
+
+# Or test manually with a simple MCP message
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | npm run start:stdio
+```
+
+### 2. **HTTP Mode**: For LibreChat and Web Integration
+
+For LibreChat and web-based MCP clients that require HTTP endpoints.
+
+- **Endpoint**: `http://localhost:3000/message`
+- **Start with**: `npm start`
+- **Health check**: `http://localhost:3000/health`
 
 ## 📊 Monitoring
 
