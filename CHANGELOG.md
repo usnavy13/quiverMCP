@@ -24,7 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reorganized README to prioritize STDIO/Claude Desktop usage
 - Enhanced prerequisites section with mode-specific requirements
 - Updated feature list to highlight Claude Desktop compatibility
-- Updated repository references to use original repo instead of fork
 - Enhanced Docker Compose configuration
 
 ### Fixed
