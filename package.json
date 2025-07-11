@@ -12,6 +12,7 @@
     "dev:stdio": "tsx src/index.ts",
     "watch": "tsc --watch",
     "test": "tsx test-endpoints.ts",
+    "test:stdio": "node test-stdio.js",
     "test:comprehensive": "tsx tests/comprehensive-test-suite.ts",
     "test:config": "tsx tests/config-validation-suite.ts",
     "test:all": "npm run test:config http://localhost:3000 && npm run test:comprehensive http://localhost:3000"

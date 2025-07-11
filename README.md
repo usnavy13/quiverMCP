@@ -141,7 +141,7 @@ The easiest way to use QuiverAPI with Claude Desktop:
      "mcpServers": {
        "quiver": {
          "command": "npx",
-         "args": ["-y", "github:jcoffi/quiverMCP"],
+         "args": ["-y", "github:usnavy13/quiverMCP"],
          "env": {
            "QUIVER_API_TOKEN": "your_token_here"
          }
@@ -390,7 +390,7 @@ This server supports two transport modes:
      "mcpServers": {
        "quiver": {
          "command": "npx",
-         "args": ["-y", "github:jcoffi/quiverMCP"],
+         "args": ["-y", "github:usnavy13/quiverMCP"],
          "env": {
            "QUIVER_API_TOKEN": "your_token_here"
          }
@@ -421,7 +421,10 @@ npm run start:stdio
 #### Testing STDIO Mode
 
 ```bash
-# Test with a simple MCP message
+# Run the built-in STDIO test suite
+npm run test:stdio
+
+# Or test manually with a simple MCP message
 echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | npm run start:stdio
 ```
 

@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced documentation with MCP protocol details
 - Dedicated Claude Desktop integration section in README
 - STDIO mode usage examples and testing instructions
+- STDIO test suite for verifying MCP protocol functionality
 
 ### Changed
 - Updated README with GitHub Container Registry usage
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reorganized README to prioritize STDIO/Claude Desktop usage
 - Enhanced prerequisites section with mode-specific requirements
 - Updated feature list to highlight Claude Desktop compatibility
+- Updated repository references to use original repo instead of fork
 - Enhanced Docker Compose configuration
 
 ### Fixed
