@@ -14,10 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Multi-platform Docker builds (linux/amd64, linux/arm64)
 - Comprehensive MCP protocol testing endpoints
 - Enhanced documentation with MCP protocol details
+- Dedicated Claude Desktop integration section in README
+- STDIO mode usage examples and testing instructions
 
 ### Changed
 - Updated README with GitHub Container Registry usage
 - Improved LibreChat integration documentation
+- Reorganized README to prioritize STDIO/Claude Desktop usage
+- Enhanced prerequisites section with mode-specific requirements
+- Updated feature list to highlight Claude Desktop compatibility
 - Enhanced Docker Compose configuration
 
 ### Fixed
